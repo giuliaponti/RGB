@@ -116,7 +116,7 @@ input[type=range]::-webkit-slider-thumb {   /*cursore*/
     padding: 1em 2em;
     border: 2px solid #ffffff;
     position: absolute;
-    margin-left: 62%;
+    margin-left: 65%;
     margin-top: -2%;
 }
 
