@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Specchio</title>
+	<link rel="stylesheet" href="main.css">
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<a class="index-btn" href="https://ixd-supsi.github.io/specchiodellemiebrame/">
+		<img src="assets/back_0.png">
+	</a>
+
+
+	
+	<h1>
+		RGB
+	</h1>
+
+	<h2>pixel:</h2>
+
+	<p>
+		Unità minima convenzionale della superficie di un'immagine digitale. <br>
+		I pixel, disposti in modo da comporre una griglia fissa rettangolare, per la loro piccolezza e densità appaiono fusi in un'unica immagine.
+		Ad ogni pixel si associa una stringa di bit che contiene informazioni quali le coordinate di posizione nella griglia e il codice del colore.
+	</p>
+
+	<div class="colore">
+		<h3>e se i colori <br> non avessero un colore?</h3> <br>
+		<img src="assets/r_5.png"> <p>Rosso</p>
+		<img src="assets/g_5.png"> <p>Verde</p>
+		<img src="assets/b_5.png"> <p>Blu</p>
+
+		
+	</div>
+
+	<div>
+		<h3>risoluzione dell'immagine</h3>
+		<p class="risoluzione">
+			Risoluzione più alta significa che ci sono più pixel per pollice (PPI), 
+			le immagini con risoluzioni più basse hanno meno pixel che, se troppo grandi, possono diventare visibili.
+		</p>
+	</div>
+
+	<a href="#" class="button" id="btn-download" download="RGB.png">Download</a>
+
+	<script>
+
+		var slider;
+		let capture;
+
+		const rosso =[]
+		const blu =[]
+		const verde =[]
+
+		function preload() {
+
+			rosso[0]= loadImage("assets/r_0.png");
+			rosso[1]= loadImage("assets/r_1.png");
+			rosso[2]= loadImage("assets/r_2.png");
+			rosso[3]= loadImage("assets/r_3.png");
+			rosso[4]= loadImage("assets/r_4.png");
+			rosso[5]= loadImage("assets/r_5.png");
+			rosso[6]= loadImage("assets/r_6.png");
+		
+			blu[0]= loadImage("assets/b_0.png");
+			blu[1]= loadImage("assets/b_1.png");
+			blu[2]= loadImage("assets/b_2.png");
+			blu[3]= loadImage("assets/b_3.png");
+			blu[4]= loadImage("assets/b_4.png");
+			blu[5]= loadImage("assets/b_5.png");
+			blu[6]= loadImage("assets/b_6.png");
+		
+			verde[0]= loadImage("assets/g_0.png");
+			verde[1]= loadImage("assets/g_1.png");
+			verde[2]= loadImage("assets/g_2.png");
+			verde[3]= loadImage("assets/g_3.png");
+			verde[4]= loadImage("assets/g_4.png");
+			verde[5]= loadImage("assets/g_5.png");
+			verde[5]= loadImage("assets/g_6.png");
+		}
+
+		function setup() {
+			capture = createCapture(VIDEO);
+			capture.size(960, 720)
+			capture.hide();
+
+			createCanvas(960, 600);
+			noStroke();
+			fill(255);
+			slider = createSlider(10, 100, 25, );
+		}
+
+		function draw() {
+
+			blendMode(BLEND);
+			background(0);
+
+			var stepSize = slider.value();
+
+			blendMode(ADD);
+
+			capture.loadPixels();
+			for (let y = 0; y < height; y += stepSize) {
+				for (let x = 0; x < width; x += stepSize) {
+					const i = capture.width - x + 1 + (y * capture.width) ;
+					const r =  capture.pixels[i * 4 + 0];
+					const g =  capture.pixels[i * 4 + 1];
+					const b =  capture.pixels[i * 4 + 2];
+					
+					const r_index = r ? round(map(r, 0, 255, 0, 5)) : 0;
+					const g_index = g ? round(map(g, 0, 255, 0, 5)) : 0;
+					const b_index = b ? round(map(b, 0, 255, 0, 5)) : 0;
+					
+					//if (x == 0 && y == 0) console.log(r_index)
+					
+					//tint(255,0,0);
+					image (rosso[r_index], x, y, stepSize, stepSize )
+					//tint(0,255,0);
+					image (blu[b_index], x, y, stepSize, stepSize )
+					//tint(0,0,255);
+					image (verde[g_index], x, y, stepSize, stepSize )
+					
+				}
+			}
+		 	translate(capture.width, 0)
+		 	scale(-1, 1)
+		}
+		var button = document.getElementById('btn-download');
+		button.addEventListener('click', function (e) {
+			var dataURL = canvas.toDataURL('image/png');
+			button.href = dataURL;
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+</body>
+</html>
