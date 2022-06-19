@@ -34,7 +34,18 @@ h2 {
 }
 
 h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    padding-left: 0.2em;
+    color: #000000;
+    background-color: #ffffff;
+    margin-top: 10%;
+
     display: inline;
+    /* margin-left: 5%; */
+    margin-right: 84%;
+    margin-bottom: 0pt;
+    padding-left: 0.2em;
 }
 
 p {
@@ -49,16 +60,6 @@ div {
     margin-left: 5%;
     margin-top: 3%;
  }
- 
-h3 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1em;
-    padding-left: 0.2em;
-    color: #000000;
-    background-color: #ffffff;
-    margin-top: 10%;
- 
-  }
 
 .colore img {
     width: 2%;
@@ -84,7 +85,7 @@ div .risoluzione {
 input[type=range] {
     position: absolute;
     width: 960px;
-    margin-top: -5%;
+    margin-top: -6%;
     margin-left: 40%;
     background-color: transparent;
     -webkit-appearance: none;
@@ -110,13 +111,13 @@ input[type=range]::-webkit-slider-thumb {   /*cursore*/
 
 #btn-download {
     font-family:'Courier New', Courier, monospace;
-    font-size: 12px;
+    font-size: 1em;
     color: #ffffff;
     text-decoration: none;
     padding: 1em 2em;
     border: 2px solid #ffffff;
     position: absolute;
-    margin-left: 65%;
+    margin-left: 63%;
     margin-top: -2%;
 }
 
